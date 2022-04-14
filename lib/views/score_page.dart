@@ -38,8 +38,12 @@ class ScorePage extends StatelessWidget {
                   fixture.current == 'live'
                       ? LiveMatchTile(
                           fixture: fixture,
+                          shouldPush: false,
                         )
-                      : TeamTile(fixture: fixture),
+                      : TeamTile(
+                          fixture: fixture,
+                          shouldPush: false,
+                        ),
                 ],
               ),
             ),

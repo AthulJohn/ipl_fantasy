@@ -6,6 +6,7 @@ import '../../services/ipl_api.dart';
 
 class LiveMatchTile extends StatelessWidget {
   final Fixture fixture;
+  final bool shouldPush;
   Stream<Fixture> getScore(link) async* {
     while (true) {
       dynamic m = await getShortScore(link);
@@ -16,14 +17,18 @@ class LiveMatchTile extends StatelessWidget {
     }
   }
 
-  const LiveMatchTile({Key? key, required this.fixture}) : super(key: key);
+  const LiveMatchTile({Key? key, required this.fixture, this.shouldPush = true})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<Fixture>(
       stream: getScore(fixture.link),
       builder: (context, snapshot) {
-        return TeamTile(fixture: snapshot.data ?? fixture);
+        return TeamTile(
+          fixture: snapshot.data ?? fixture,
+          shouldPush: shouldPush,
+        );
       },
     );
   }

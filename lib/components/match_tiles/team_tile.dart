@@ -9,25 +9,29 @@ import '../../views/score_page.dart';
 
 class TeamTile extends StatelessWidget {
   final Fixture fixture;
+  final bool shouldPush;
 
-  const TeamTile({Key? key, required this.fixture}) : super(key: key);
+  const TeamTile({Key? key, required this.fixture, this.shouldPush = true})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {
-        Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-          if (fixture.current == 'live') {
-            if (fixture.overa == '20.0 ov' || fixture.overa == '') {
-              return LiveScorePage(fixture, "A");
-            } else {
-              return LiveScorePage(fixture, "H");
+      onTap: shouldPush
+          ? () {
+              Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+                if (fixture.current == 'live') {
+                  if (fixture.overa == '20.0 ov' || fixture.overa == '') {
+                    return LiveScorePage(fixture, "A");
+                  } else {
+                    return LiveScorePage(fixture, "H");
+                  }
+                } else {
+                  return ScorePage(fixture);
+                }
+              }));
             }
-          } else {
-            return ScorePage(fixture);
-          }
-        }));
-      },
+          : null,
       child: Card(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10),
