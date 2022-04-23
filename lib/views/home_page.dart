@@ -36,6 +36,20 @@ class HomePage extends StatelessWidget {
                 ),
                 backgroundColor: Color(0xff1C4670),
                 actions: [
+                  // TextButton(
+                  //   onPressed: () {
+                  //     // Navigator.push(
+                  //     //   context,
+                  //     //   MaterialPageRoute(
+                  //     //     builder: (context) => InfoPage(),
+                  //     //   ),
+                  //     // );
+                  //   },
+                  //   child: const Text('Fantasy'),
+                  //   style: ButtonStyle(
+                  //       backgroundColor:
+                  //           MaterialStateProperty.all(Colors.green)),
+                  // ),
                   IconButton(
                     icon: const Icon(Icons.info_outline),
                     onPressed: () {

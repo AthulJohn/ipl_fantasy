@@ -14,9 +14,10 @@ class LiveInningsView extends StatelessWidget {
     while (true) {
       Map<String, dynamic> mp = await getLiveInningsScore(innlink, over);
       InningsScore inn = mp['innings'];
-      over = inn.overs;
-      yield inn;
-
+      if (over.compareTo(inn.overs) < 1) {
+        over = inn.overs;
+        yield inn;
+      }
       await Future.delayed(const Duration(seconds: 15));
     }
   }
@@ -24,9 +25,8 @@ class LiveInningsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<InningsScore>(
-      builder: ((context, snapshot) => snapshot.hasData
-          ? InningsView(snapshot.data ?? InningsScore())
-          : const Loading()),
+      builder: ((context, snapshot) =>
+          snapshot.hasData ? InningsView(snapshot.data!) : const Loading()),
       stream: getInnings(link),
     );
   }

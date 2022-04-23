@@ -1,6 +1,6 @@
-# ipl_fantasy
+# ipl_fantasy - Cricbie
 
-A new Flutter project.
+Cricbie is a cricketing app that provides you with the latest scores from IPL.
 
 ## Getting Started
 

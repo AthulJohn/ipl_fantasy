@@ -32,6 +32,7 @@ class InningsScore {
         overs = (l['Score'] ?? '').split(' (')[1].split(')')[0];
       runRate = l['Runrate'] ?? '';
       team = l['Team'] ?? '';
+      if (overs == '') return;
 
       batterscores = [
         for (Map p in l['Batting']) BatterScore.fromJson(p),

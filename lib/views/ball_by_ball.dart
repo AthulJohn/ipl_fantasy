@@ -18,8 +18,10 @@ class BallbyBallView extends StatelessWidget {
     String over = '';
     while (true) {
       Map<String, dynamic> resp = await getLiveInningsScore(fixture.link, over);
-      if (resp['innings'].updated) yield resp;
-      over = (resp['innings'] ?? InningsScore()).overs;
+      if (resp['innings'].updated) {
+        yield resp;
+        over = (resp['innings'] ?? InningsScore()).overs;
+      }
       await Future.delayed(const Duration(seconds: 15));
     }
   }

@@ -64,7 +64,7 @@ class TeamTile extends StatelessWidget {
               end: Alignment.bottomCenter,
             ),
           ),
-          height: 160,
+          height: 170,
           // decoration: BoxDecoration(
           // gradient: LinearGradient(colors: [
           //   fixture.home.color,
@@ -116,53 +116,79 @@ class TeamTile extends StatelessWidget {
                     Text(fixture.description,
                         textAlign: TextAlign.center,
                         style: AppConstants.textStyles['body']),
+                    Text(
+                        "on   ${fixture.date.day} - ${fixture.date.month} - ${fixture.date.year}",
+                        textAlign: TextAlign.center,
+                        style: AppConstants.textStyles['body']),
                     Expanded(
                       child: Row(
                         children: [
                           Image.network(
                             fixture.home.logo,
-                            height: 50,
+                            height: fixture.current == "match-ended" &&
+                                    fixture.winner.code == fixture.home.code
+                                ? 60
+                                : 50,
                             fit: BoxFit.cover,
                           ),
                           Expanded(
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                Text(fixture.home.name,
-                                    style: AppConstants.textStyles['bold']),
-                                if (fixture.current == "live" ||
-                                    fixture.current == "match-ended")
-                                  Text(fixture.scoreh,
-                                      style: AppConstants.textStyles['focus']),
-                                if (fixture.current == "live" ||
-                                    fixture.current == "match-ended")
-                                  Text(fixture.overh,
-                                      style: AppConstants.textStyles['body']),
-                              ],
+                            child: Opacity(
+                              opacity: fixture.current == "match-ended" &&
+                                      fixture.winner.code == fixture.away.code
+                                  ? 0.5
+                                  : 1,
+                              child: Column(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  Text(fixture.home.name,
+                                      style: AppConstants.textStyles['bold']),
+                                  if (fixture.current == "live" ||
+                                      fixture.current == "match-ended")
+                                    Text(fixture.scoreh,
+                                        style:
+                                            AppConstants.textStyles['focus']),
+                                  if (fixture.current == "live" ||
+                                      fixture.current == "match-ended")
+                                    Text(fixture.overh,
+                                        style: AppConstants.textStyles['body']),
+                                ],
+                              ),
                             ),
                           ),
                           Expanded(
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                Text(fixture.away.name,
-                                    textAlign: TextAlign.right,
-                                    style: AppConstants.textStyles['bold']),
-                                if (fixture.current == "live" ||
-                                    fixture.current == "match-ended")
-                                  Text(fixture.scorea,
-                                      style: AppConstants.textStyles['focus']),
-                                if (fixture.current == "live" ||
-                                    fixture.current == "match-ended")
-                                  Text(fixture.overa,
+                            child: Opacity(
+                              opacity: fixture.current == "match-ended" &&
+                                      fixture.winner.code == fixture.home.code
+                                  ? 0.5
+                                  : 1,
+                              child: Column(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  Text(fixture.away.name,
                                       textAlign: TextAlign.right,
-                                      style: AppConstants.textStyles['body']),
-                              ],
+                                      style: AppConstants.textStyles['bold']),
+                                  if (fixture.current == "live" ||
+                                      fixture.current == "match-ended")
+                                    Text(fixture.scorea,
+                                        style:
+                                            AppConstants.textStyles['focus']),
+                                  if (fixture.current == "live" ||
+                                      fixture.current == "match-ended")
+                                    Text(fixture.overa,
+                                        textAlign: TextAlign.right,
+                                        style: AppConstants.textStyles['body']),
+                                ],
+                              ),
                             ),
                           ),
                           Image.network(
                             fixture.away.logo,
-                            height: 50,
+                            height: fixture.current == "match-ended" &&
+                                    fixture.winner.code == fixture.away.code
+                                ? 60
+                                : 50,
                             fit: BoxFit.cover,
                           ),
                         ],

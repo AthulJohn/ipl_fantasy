@@ -15,25 +15,9 @@ class CurrentBallView extends StatefulWidget {
 }
 
 class _CurrentBallViewState extends State<CurrentBallView> {
-  double scale = 1;
-  bool anim = false;
-  void callAnimate() async {
-    print(widget.animate);
-    if (widget.animate) {
-      print(scale);
-      anim = false;
-      scale = 0;
-      print(scale);
-      anim = true;
-      // setState(() {
-      scale = 1;
-      // });
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
-    callAnimate();
+    print("fiest here");
     return Container(
       decoration: BoxDecoration(
           image: DecorationImage(
@@ -44,19 +28,13 @@ class _CurrentBallViewState extends State<CurrentBallView> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          Spacer(),
+          const Spacer(),
           Expanded(
             flex: 2,
             child: Center(
-              child: AnimatedScale(
-                  scale: scale,
-                  onEnd: () {
-                    scale = 0;
-                  },
-                  duration: anim
-                      ? Duration(milliseconds: 900)
-                      : Duration(milliseconds: 0),
-                  child: CurrentBall(widget.ball.ball, widget.stricker)),
+              child: AnimatedBall(
+                ball: widget.ball,
+              ),
             ),
           ),
           Padding(
@@ -79,6 +57,61 @@ class _CurrentBallViewState extends State<CurrentBallView> {
         ],
       ),
     );
+  }
+}
+
+class AnimatedBall extends StatefulWidget {
+  const AnimatedBall({
+    Key? key,
+    required this.ball,
+  }) : super(key: key);
+
+  final Bowl ball;
+
+  @override
+  State<AnimatedBall> createState() => _AnimatedBallState();
+}
+
+class _AnimatedBallState extends State<AnimatedBall>
+    with SingleTickerProviderStateMixin {
+  late AnimationController controller;
+  late Animation animation;
+  bool runinnext = false;
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    initAnimation();
+    runAnimation();
+  }
+
+  void initAnimation() {
+    controller = AnimationController(
+      duration: Duration(seconds: 1),
+      vsync: this,
+    );
+
+    animation = CurvedAnimation(parent: controller, curve: Curves.bounceOut);
+  }
+
+  void runAnimation() {
+    if (!runinnext && controller.isCompleted) {
+      runinnext = true;
+      return;
+    }
+    runinnext = false;
+    controller.reset();
+    controller.forward();
+    controller.addListener(() {
+      setState(() {});
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    if (!controller.isAnimating) runAnimation();
+    return Transform.scale(
+        scale: animation.value, child: CurrentBall(widget.ball.ball, ''));
   }
 }
 

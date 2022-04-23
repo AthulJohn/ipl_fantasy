@@ -35,11 +35,11 @@ class BallsView extends StatelessWidget {
             child: CurrentBallView(
                 (inningsScore.balls.length > 1)
                     ? inningsScore.balls[0]
-                    : Bowl(ball: '0', over: '1.1 1'),
+                    : Bowl(ball: '', over: '0.0 1'),
                 inningsScore.lastStricker,
                 inningsScore.lastBowler,
-                true),
-            // inningsScore.updated),
+                // true),
+                inningsScore.updated),
             flex: 8),
         Expanded(
           child: Container(
@@ -67,31 +67,51 @@ class RecentBall extends StatefulWidget {
   State<RecentBall> createState() => _RecentBallState();
 }
 
-class _RecentBallState extends State<RecentBall> {
-  bool over = false;
-  void animateBall() async {
-    over = false;
-    Future.delayed(const Duration(milliseconds: 100), () {
-      setState(() {
-        over = true;
-      });
+class _RecentBallState extends State<RecentBall>
+    with SingleTickerProviderStateMixin {
+  late AnimationController controller;
+  late Animation animation;
+  bool runinnext = false, selector = true;
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    initAnimation();
+    runAnimation();
+  }
+
+  void initAnimation() {
+    controller = AnimationController(
+      duration: Duration(seconds: 1),
+      vsync: this,
+    );
+
+    animation = CurvedAnimation(parent: controller, curve: Curves.bounceOut);
+  }
+
+  void runAnimation() {
+    if (!runinnext && controller.isCompleted) {
+      runinnext = true;
+      return;
+    }
+    runinnext = false;
+    controller.reset();
+    controller.forward();
+    controller.addListener(() {
+      setState(() {});
     });
   }
 
   @override
-  void initState() {
-    super.initState();
-    animateBall();
-  }
-
-  @override
   Widget build(BuildContext context) {
-    return AnimatedSize(
-        // scale: over ? 1 : 0,
-        child: over ? BallInfoCircle(widget.ball) : Container(),
-        // secondChild: BallInfoCircle(widget.ball),
-        // crossFadeState:
-        //     over ? CrossFadeState.showSecond : CrossFadeState.showFirst,
-        duration: Duration(milliseconds: 200));
+    if (!controller.isAnimating) runAnimation();
+    return Transform.scale(
+      // scale: over ? 1 : 0,
+      child: BallInfoCircle(widget.ball),
+      // secondChild: BallInfoCircle(widget.ball),
+      // crossFadeState:
+      //     over ? CrossFadeState.showSecond : CrossFadeState.showFirst,
+      scale: animation.value,
+    );
   }
 }

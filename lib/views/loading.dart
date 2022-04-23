@@ -10,38 +10,39 @@ class Loading extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        backgroundColor: Colors.black,
         body: Container(
-      decoration: BoxDecoration(
-          image: DecorationImage(
-              image:
-                  AssetImage('images/loadings/${Random().nextInt(10) + 1}.png'),
-              fit: BoxFit.cover)),
-      child: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Container(),
-            Container(),
-            Container(),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
+          decoration: BoxDecoration(
+              image: DecorationImage(
+                  image: AssetImage(
+                      'images/loadings/${Random().nextInt(10) + 1}.png'),
+                  fit: BoxFit.contain)),
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                Text(
-                  text,
-                  style: AppConstants.textStyles['bold'],
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: CircularProgressIndicator(
-                    color: Colors.white,
-                  ),
-                ),
+                Container(),
+                Container(),
+                Container(),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      text,
+                      style: AppConstants.textStyles['bold'],
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: CircularProgressIndicator(
+                        color: Colors.white,
+                      ),
+                    ),
+                  ],
+                )
               ],
-            )
-          ],
-        ),
-      ),
-    ));
+            ),
+          ),
+        ));
   }
 }
