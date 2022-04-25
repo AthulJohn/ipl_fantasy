@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:ipl_fantasy/models/bowl_detail.dart';
 import 'package:ipl_fantasy/models/constants.dart';
 
@@ -87,7 +88,7 @@ class _AnimatedBallState extends State<AnimatedBall>
 
   void initAnimation() {
     controller = AnimationController(
-      duration: Duration(seconds: 1),
+      duration: const Duration(seconds: 1),
       vsync: this,
     );
 
@@ -130,10 +131,10 @@ class CurrentBall extends StatelessWidget {
                   borderRadius: BorderRadius.circular(10),
                   color: Colors.red.withOpacity(0.8),
                 ),
-                child: const Text('WICKET ',
+                child: Text('WICKET ',
                     style: TextStyle(
                         color: Colors.white,
-                        fontSize: 80,
+                        fontSize: 80.sp,
                         fontWeight: FontWeight.bold,
                         fontStyle: FontStyle.italic))),
             Text(
@@ -151,10 +152,10 @@ class CurrentBall extends StatelessWidget {
                   borderRadius: BorderRadius.circular(10),
                   color: Colors.blue.withOpacity(0.8),
                 ),
-                child: const Text('FOUR! ',
+                child: Text('FOUR! ',
                     style: TextStyle(
                         color: Colors.white,
-                        fontSize: 80,
+                        fontSize: 80.sp,
                         fontWeight: FontWeight.bold,
                         fontStyle: FontStyle.italic))),
             Text(
@@ -172,10 +173,10 @@ class CurrentBall extends StatelessWidget {
                   borderRadius: BorderRadius.circular(10),
                   color: Colors.green.withOpacity(0.8),
                 ),
-                child: const Text('SIX! ',
+                child: Text('SIX! ',
                     style: TextStyle(
                         color: Colors.white,
-                        fontSize: 80,
+                        fontSize: 80.sp,
                         fontWeight: FontWeight.bold,
                         fontStyle: FontStyle.italic))),
             Text(
@@ -192,9 +193,9 @@ class CurrentBall extends StatelessWidget {
               color: Colors.white.withOpacity(0.8),
             ),
             child: Text(' $ball ',
-                style: const TextStyle(
+                style: TextStyle(
                     color: Colors.black,
-                    fontSize: 80,
+                    fontSize: 80.sp,
                     fontWeight: FontWeight.bold,
                     fontStyle: FontStyle.italic)));
     }

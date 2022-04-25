@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:ipl_fantasy/models/batter_score.dart';
 
 import '../models/bowler_score.dart';
@@ -76,9 +77,9 @@ class BatterTile extends StatelessWidget {
                     children: [
                       Text(
                         batter.runs + ' ',
-                        style: const TextStyle(
+                        style: TextStyle(
                             fontWeight: FontWeight.bold,
-                            fontSize: 18,
+                            fontSize: 18.sp,
                             color: Colors.white),
                       ),
                       if (batter.balls != '')
@@ -142,7 +143,7 @@ class BowlerTile extends StatelessWidget {
                 end: Alignment.bottomCenter,
                 colors: bowler.name == ''
                     ? [Colors.black, Colors.black]
-                    : [
+                    : const [
                         Color(0xFF1C4670),
                         Color(0xFF278AB0),
                       ])),
@@ -166,9 +167,9 @@ class BowlerTile extends StatelessWidget {
                       child: Text(
                     bowler.name == '' ? 'R' : bowler.runs,
                     textAlign: TextAlign.center,
-                    style: const TextStyle(
+                    style: TextStyle(
                         fontWeight: FontWeight.bold,
-                        fontSize: 18,
+                        fontSize: 18.sp,
                         color: Colors.white),
                   )),
                   Expanded(

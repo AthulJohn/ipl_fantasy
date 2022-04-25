@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:ipl_fantasy/models/batter_score.dart';
 import 'package:ipl_fantasy/models/constants.dart';
 import 'package:ipl_fantasy/models/innings_score.dart';
@@ -40,7 +41,7 @@ class BallbyBallView extends StatelessWidget {
         return bowler;
       }
     }
-    if (bowlers.length > 0) {
+    if (bowlers.isNotEmpty) {
       return bowlers[0];
     }
     return BowlerScore('');
@@ -85,7 +86,7 @@ class BallbyBallView extends StatelessWidget {
                     Expanded(
                       child: Container(
                           decoration: BoxDecoration(
-                            border: Border(bottom: BorderSide(width: 2)),
+                            border: const Border(bottom: BorderSide(width: 2)),
                             color: getBat(snapshot.data!['innings'].team).color,
                           ),
                           child: Row(
@@ -113,10 +114,10 @@ class BallbyBallView extends StatelessWidget {
                               ),
                               Container(
                                 color: Colors.grey[300],
-                                padding: EdgeInsets.all(8),
+                                padding: const EdgeInsets.all(8),
                                 child: Text(
                                   "${targetFinder(snapshot.data!['Status'])['R']}",
-                                  style: TextStyle(fontSize: 24),
+                                  style: TextStyle(fontSize: 24.sp),
                                 ),
                               ),
                               Center(
@@ -127,10 +128,10 @@ class BallbyBallView extends StatelessWidget {
                                           'body'))),
                               Container(
                                 color: Colors.grey[300],
-                                padding: EdgeInsets.all(8),
+                                padding: const EdgeInsets.all(8),
                                 child: Text(
                                   "${targetFinder(snapshot.data!['Status'])['B']}",
-                                  style: TextStyle(fontSize: 24),
+                                  style: TextStyle(fontSize: 24.sp),
                                 ),
                               ),
                               Center(
@@ -161,7 +162,7 @@ class BallbyBallView extends StatelessWidget {
                                       // Team Logo and Score
                                       flex: 2,
                                       child: Container(
-                                        decoration: BoxDecoration(
+                                        decoration: const BoxDecoration(
                                             border: Border.symmetric(
                                                 horizontal:
                                                     BorderSide(width: 2))),
@@ -195,8 +196,8 @@ class BallbyBallView extends StatelessWidget {
                                     Expanded(
                                       // Team Name and overs
                                       child: Container(
-                                        padding:
-                                            EdgeInsets.symmetric(horizontal: 8),
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 8),
                                         decoration: const BoxDecoration(
                                             // border: Border.symmetric(
                                             //     horizontal:
@@ -235,7 +236,7 @@ class BallbyBallView extends StatelessWidget {
                                         snapshot.data!['innings'].batterscores))
                                       Expanded(
                                         child: Container(
-                                          decoration: BoxDecoration(
+                                          decoration: const BoxDecoration(
                                               border: Border.symmetric(
                                                   vertical:
                                                       BorderSide(width: 4),
@@ -299,7 +300,7 @@ class BallbyBallView extends StatelessWidget {
                         // Ballers part
                         child: Container(
                           decoration: BoxDecoration(
-                            border: Border.symmetric(
+                            border: const Border.symmetric(
                                 horizontal: BorderSide(width: 2)),
                             color:
                                 getBowl(snapshot.data!['innings'].team).color,
@@ -309,7 +310,7 @@ class BallbyBallView extends StatelessWidget {
                               Expanded(
                                 flex: 4,
                                 child: Container(
-                                  decoration: BoxDecoration(
+                                  decoration: const BoxDecoration(
                                       border: Border.symmetric(
                                           vertical: BorderSide(width: 4),
                                           horizontal: BorderSide(width: 0))),

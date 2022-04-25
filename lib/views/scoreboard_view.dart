@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:ipl_fantasy/models/fixture.dart';
 
 import '../components/innings_view/innings_view.dart';
@@ -35,18 +36,18 @@ class ScoreBoardView extends StatelessWidget {
                         Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Text(fixture.home.code,
-                              style: const TextStyle(
+                              style: TextStyle(
                                   color: Colors.black,
                                   fontWeight: FontWeight.bold,
-                                  fontSize: 20)),
+                                  fontSize: 20.sp)),
                         ),
                         Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Text(fixture.away.code,
-                              style: const TextStyle(
+                              style: TextStyle(
                                   color: Colors.black,
                                   fontWeight: FontWeight.bold,
-                                  fontSize: 20)),
+                                  fontSize: 20.sp)),
                         )
                       ]),
                     ),

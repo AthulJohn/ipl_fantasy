@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:ipl_fantasy/models/constants.dart';
 
 class Info extends StatelessWidget {
@@ -8,10 +9,12 @@ class Info extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
+        title: Text(
           'Info',
           style: TextStyle(
-              color: Colors.white, fontWeight: FontWeight.bold, fontSize: 30),
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
+              fontSize: 30.sp),
         ),
         backgroundColor: const Color(0xff1C4670),
       ),
@@ -35,15 +38,15 @@ class Info extends StatelessWidget {
               ),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: const [
+                children: [
                   Text(
                     'Cricbie Fantasy',
                     style: TextStyle(
                         color: Color(0xff1C4670),
-                        fontSize: 25,
+                        fontSize: 25.sp,
                         fontWeight: FontWeight.bold),
                   ),
-                  Text(
+                  const Text(
                     '\nA unique non profit fantasy game where you can assemble the best team, and score points. Expecting release soon',
                     style: TextStyle(
                       color: Color(0xff1C4670),

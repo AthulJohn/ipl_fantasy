@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:ipl_fantasy/models/fixture.dart';
 import 'package:ipl_fantasy/models/innings_score.dart';
 import 'package:ipl_fantasy/models/score_board.dart';
@@ -22,10 +23,12 @@ class _LiveScorePageState extends State<LiveScorePage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text(
+          title: Text(
             'Cricbie',
             style: TextStyle(
-                color: Colors.white, fontWeight: FontWeight.bold, fontSize: 30),
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+                fontSize: 30.sp),
           ),
           backgroundColor: Color(0xff1C4670),
         ),

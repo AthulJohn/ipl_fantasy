@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:ipl_fantasy/models/team.dart';
 
 abstract class AppConstants {
@@ -76,18 +77,18 @@ abstract class AppConstants {
   static Map<String, TextStyle> textStyles = {
     "body": const TextStyle(color: Colors.white),
     "body black": const TextStyle(color: Colors.black),
-    "focus": const TextStyle(
-        color: Colors.white, fontSize: 25, fontWeight: FontWeight.bold),
-    "focus black": const TextStyle(
-        color: Colors.black, fontSize: 25, fontWeight: FontWeight.bold),
-    "bold": const TextStyle(
-        color: Colors.white, fontSize: 14, fontWeight: FontWeight.bold),
-    "bold black": const TextStyle(
-        color: Colors.black, fontSize: 14, fontWeight: FontWeight.bold),
-    "full bold": const TextStyle(
-        color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold),
-    "full bold black": const TextStyle(
-        color: Colors.black, fontSize: 18, fontWeight: FontWeight.bold),
+    "focus": TextStyle(
+        color: Colors.white, fontSize: 25.sp, fontWeight: FontWeight.bold),
+    "focus black": TextStyle(
+        color: Colors.black, fontSize: 25.sp, fontWeight: FontWeight.bold),
+    "bold": TextStyle(
+        color: Colors.white, fontSize: 14.sp, fontWeight: FontWeight.bold),
+    "bold black": TextStyle(
+        color: Colors.black, fontSize: 14.sp, fontWeight: FontWeight.bold),
+    "full bold": TextStyle(
+        color: Colors.white, fontSize: 18.sp, fontWeight: FontWeight.bold),
+    "full bold black": TextStyle(
+        color: Colors.black, fontSize: 18.sp, fontWeight: FontWeight.bold),
   };
 
   static TextStyle adaptiveStyle(Color color, String key) {

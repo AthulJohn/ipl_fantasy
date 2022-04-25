@@ -2,7 +2,7 @@
     package="com.example.ipl_fantasy">
    <uses-permission android:name="android.permission.INTERNET" />
    <application
-        android:label="ipl_fantasy"
+        android:label="Cricbie"
         android:name="${applicationName}"
         android:icon="@mipmap/launcher_icon">
         <activity

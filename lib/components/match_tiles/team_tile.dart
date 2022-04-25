@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:ipl_fantasy/models/constants.dart';
 
 import '../../models/fixture.dart';
@@ -64,7 +65,7 @@ class TeamTile extends StatelessWidget {
               end: Alignment.bottomCenter,
             ),
           ),
-          height: 170,
+          height: fixture.current == "upcoming" ? 100.sp : 160.sp,
           // decoration: BoxDecoration(
           // gradient: LinearGradient(colors: [
           //   fixture.home.color,
@@ -113,11 +114,9 @@ class TeamTile extends StatelessWidget {
                 padding: const EdgeInsets.all(8.0),
                 child: Column(
                   children: [
-                    Text(fixture.description,
-                        textAlign: TextAlign.center,
-                        style: AppConstants.textStyles['body']),
                     Text(
-                        "on   ${fixture.date.day} - ${fixture.date.month} - ${fixture.date.year}",
+                        fixture.description +
+                            " on ${fixture.date.day}-${fixture.date.month}-${fixture.date.year}",
                         textAlign: TextAlign.center,
                         style: AppConstants.textStyles['body']),
                     Expanded(
@@ -127,8 +126,8 @@ class TeamTile extends StatelessWidget {
                             fixture.home.logo,
                             height: fixture.current == "match-ended" &&
                                     fixture.winner.code == fixture.home.code
-                                ? 60
-                                : 50,
+                                ? 45.sp
+                                : 40.sp,
                             fit: BoxFit.cover,
                           ),
                           Expanded(
@@ -141,13 +140,16 @@ class TeamTile extends StatelessWidget {
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceEvenly,
                                 children: [
-                                  Text(fixture.home.name,
+                                  Text(fixture.home.code,
+                                      maxLines: 2,
+                                      overflow: TextOverflow.ellipsis,
+                                      textAlign: TextAlign.center,
                                       style: AppConstants.textStyles['bold']),
                                   if (fixture.current == "live" ||
                                       fixture.current == "match-ended")
                                     Text(fixture.scoreh,
-                                        style:
-                                            AppConstants.textStyles['focus']),
+                                        style: AppConstants
+                                            .textStyles['full bold']),
                                   if (fixture.current == "live" ||
                                       fixture.current == "match-ended")
                                     Text(fixture.overh,
@@ -166,14 +168,16 @@ class TeamTile extends StatelessWidget {
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceEvenly,
                                 children: [
-                                  Text(fixture.away.name,
-                                      textAlign: TextAlign.right,
+                                  Text(fixture.away.code,
+                                      maxLines: 2,
+                                      overflow: TextOverflow.ellipsis,
+                                      textAlign: TextAlign.center,
                                       style: AppConstants.textStyles['bold']),
                                   if (fixture.current == "live" ||
                                       fixture.current == "match-ended")
                                     Text(fixture.scorea,
-                                        style:
-                                            AppConstants.textStyles['focus']),
+                                        style: AppConstants
+                                            .textStyles['full bold']),
                                   if (fixture.current == "live" ||
                                       fixture.current == "match-ended")
                                     Text(fixture.overa,
@@ -187,8 +191,8 @@ class TeamTile extends StatelessWidget {
                             fixture.away.logo,
                             height: fixture.current == "match-ended" &&
                                     fixture.winner.code == fixture.away.code
-                                ? 60
-                                : 50,
+                                ? 45.sp
+                                : 40.sp,
                             fit: BoxFit.cover,
                           ),
                         ],

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:ipl_fantasy/models/batter_score.dart';
 import 'package:ipl_fantasy/models/innings_score.dart';
 
@@ -13,8 +14,8 @@ class InningsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView(children: [
-      const Text('  Batsmen',
-          style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+      Text('  Batsmen',
+          style: TextStyle(fontSize: 20.sp, fontWeight: FontWeight.bold)),
       for (BatterScore batter in inn.batterscores)
         BatterTile(
           batter,
@@ -25,8 +26,8 @@ class InningsView extends StatelessWidget {
         extras: inn.extras,
         rate: inn.runRate,
       ),
-      const Text('  Bowlers',
-          style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+      Text('  Bowlers',
+          style: TextStyle(fontSize: 20.sp, fontWeight: FontWeight.bold)),
       BowlerTile(BowlerScore('')),
       for (BowlerScore bowler in inn.bowlerscores)
         BowlerTile(

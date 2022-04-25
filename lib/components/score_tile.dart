@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:ipl_fantasy/models/batter_score.dart';
 
 class ScoreTile extends StatelessWidget {
@@ -55,9 +56,9 @@ class ScoreTile extends StatelessWidget {
                   children: [
                     Text(
                       score + ' ',
-                      style: const TextStyle(
+                      style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          fontSize: 18,
+                          fontSize: 18.sp,
                           color: Colors.white),
                     ),
                     Text(

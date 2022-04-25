@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:ipl_fantasy/models/constants.dart';
 import 'package:ipl_fantasy/services/ipl_api.dart';
 import 'package:ipl_fantasy/views/info.dart';
@@ -27,12 +28,12 @@ class HomePage extends StatelessWidget {
           return Scaffold(
               appBar: AppBar(
                 elevation: 0,
-                title: const Text(
+                title: Text(
                   'Cricbie',
                   style: TextStyle(
                       color: Colors.white,
                       fontWeight: FontWeight.bold,
-                      fontSize: 30),
+                      fontSize: 30.sp),
                 ),
                 backgroundColor: Color(0xff1C4670),
                 actions: [
@@ -98,8 +99,8 @@ class HomePage extends StatelessWidget {
                                                       'match-ended'
                                                   ? "Recent Match"
                                                   : "Upcoming Match",
-                                          style: const TextStyle(
-                                              fontSize: 25,
+                                          style: TextStyle(
+                                              fontSize: 25.sp,
                                               fontWeight: FontWeight.bold,
                                               color: Colors.white),
                                         ),
@@ -116,35 +117,38 @@ class HomePage extends StatelessWidget {
                                     length: 3,
                                     child: Column(
                                       children: [
-                                        const Padding(
-                                          padding: EdgeInsets.all(8.0),
+                                        Padding(
+                                          padding: const EdgeInsets.all(8.0),
                                           child: TabBar(tabs: [
                                             Padding(
-                                              padding: EdgeInsets.all(8.0),
+                                              padding:
+                                                  const EdgeInsets.all(2.0),
                                               child: Text('Results',
                                                   style: TextStyle(
                                                       color: Colors.black,
                                                       fontWeight:
                                                           FontWeight.bold,
-                                                      fontSize: 20)),
+                                                      fontSize: 20.sp)),
                                             ),
                                             Padding(
-                                              padding: EdgeInsets.all(8.0),
+                                              padding:
+                                                  const EdgeInsets.all(2.0),
                                               child: Text('Fixture',
                                                   style: TextStyle(
                                                       color: Colors.black,
                                                       fontWeight:
                                                           FontWeight.bold,
-                                                      fontSize: 20)),
+                                                      fontSize: 20.sp)),
                                             ),
                                             Padding(
-                                              padding: EdgeInsets.all(8.0),
+                                              padding:
+                                                  const EdgeInsets.all(2.0),
                                               child: Text('Table',
                                                   style: TextStyle(
                                                       color: Colors.black,
                                                       fontWeight:
                                                           FontWeight.bold,
-                                                      fontSize: 20)),
+                                                      fontSize: 20.sp)),
                                             )
                                           ]),
                                         ),
