@@ -22,14 +22,13 @@ class InningsScore {
   String lastBowler = '';
   InningsScore();
   InningsScore.fromJson(Map l, String over) {
-    if (over.compareTo((l['Score'] ?? '').split(' (')[1].split(')')[0]) < 0 ||
-        over.startsWith('9')) {
+    if (over.compareTo((l['Overs'] ?? '')) < 0 ||
+        over.startsWith('1') && (l['Overs'] ?? '').startsWith('1')) {
       updated = true;
-      target = l['Target'] ?? 0;
-      score = (l['Score'] ?? '').split(' ')[0];
+      target = 0;
+      score = (l['Score'] ?? '');
       extras = l['Extras'] ?? '';
-      if ((l['Score'] ?? '').contains(' ('))
-        overs = (l['Score'] ?? '').split(' (')[1].split(')')[0];
+      overs = (l['Overs'] ?? '');
       runRate = l['Runrate'] ?? '';
       team = l['Team'] ?? '';
       if (overs == '') return;
@@ -41,24 +40,46 @@ class InningsScore {
         for (Map p in l['Bowling']) BowlerScore.fromJson(p),
       ];
       balls = [];
-      for (String p in l['Balls'].keys) {
-        int cnt = 1;
-        List<Bowl> temp = [];
-        for (int i = 1; i <= l['Balls'][p].length; i++) {
-          temp.insert(
-              0,
-              Bowl(
-                  over: '${(int.tryParse(p.split(' ')[2]) ?? 1) - 1}.$cnt $i',
-                  ball: l['Balls'][p][i - 1].toString()));
-          if (l['Balls'][p][i - 1].contains('wd') ||
-              l['Balls'][p][i - 1].contains('nb')) {
-            continue;
-          } else {
-            cnt++;
-          }
-        }
+    } else {
+      updated = false;
+    }
+  }
 
-        balls.addAll(temp);
+  InningsScore.fromJsonlive(Map l, String over) {
+    if (over.compareTo((l['BatScore'] ?? ' (').split(' (')[1].split(')')[0]) <
+            0 ||
+        over.startsWith('1') &&
+            (l['BatScore'] ?? ' (')
+                .split(' (')[1]
+                .split(')')[0]
+                .startsWith('9')) {
+      updated = true;
+      target = l['BowlScore'] == ''
+          ? 0
+          : int.tryParse(l['BowlScore'].split(' ')[2].split('/')[0]) ?? 0;
+      score = l['BatScore'].split(' ')[2];
+      extras = '';
+      if ((l['BatScore']).contains(' ('))
+        overs = (l['BatScore']).split(' (')[1].split(')')[0];
+      runRate = l['CRR'] ?? '';
+      team = l['BatScore'].split(' ')[0] ?? '';
+      if (overs == '') return;
+      for (Map bat in l['Batting']) {
+        bat['Current Batter'] = true;
+      }
+      batterscores = [
+        for (Map p in l['Batting']) BatterScore.fromJson(p),
+      ];
+      bowlerscores = [
+        for (Map p in l['Bowling']) BowlerScore.fromJson(p),
+      ];
+      balls = [];
+      for (int i = 0; i < l['Balls'].length && i < l['Commentry'].length; i++) {
+        balls.add(Bowl(
+            over: l['Commentry'][i].split(' ')[0],
+            ball: l['Balls'][i].toString(),
+            basic: l['Commentry'][i].split(',')[0],
+            commentary: l['Commentry'][i].split(',')[1]));
       }
     } else {
       updated = false;

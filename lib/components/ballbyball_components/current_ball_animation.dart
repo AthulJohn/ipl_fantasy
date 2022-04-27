@@ -44,13 +44,13 @@ class _CurrentBallViewState extends State<CurrentBallView> {
               child: Column(
                 children: [
                   Text(
-                    widget.ball.over.split(' ')[0],
+                    widget.ball.basic,
                     style: AppConstants.textStyles['focus'],
                   ),
-                  // Text(
-                  //   "${widget.bowler} to ${widget.stricker}",
-                  //   style: AppConstants.textStyles['full bold'],
-                  // ),
+                  Text(
+                    widget.ball.commentary,
+                    style: AppConstants.textStyles['full bold'],
+                  ),
                 ],
               ),
             ),

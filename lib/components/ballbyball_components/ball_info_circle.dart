@@ -35,12 +35,12 @@ class BallInfoCircle extends StatelessWidget {
             ),
           ),
         ),
-        if (bowl.over.contains('.1 1'))
+        if (bowl.over.contains('.1'))
           Center(
             child: Text('Over ' + bowl.over.split('.')[0],
                 style: TextStyle(color: Colors.white)),
           ),
-        if (bowl.over.contains('.1 1'))
+        if (bowl.over.contains('.1'))
           VerticalDivider(
             color: Colors.white,
           )

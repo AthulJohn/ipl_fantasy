@@ -18,14 +18,14 @@ class BatterScore {
   BatterScore.fromJson(Map l) {
     name = l['Name'];
 
-    if (l['Score'] != '') {
-      runs = l['Score'].split(' ')[0];
-      balls = l['Score'].split(' ')[1].replaceAll('(', '').replaceAll(')', '');
-    }
+    // if (l['Score'] != '') {
+    runs = l['Runs'] ?? '';
+    balls = l['Balls'] ?? '';
+    // }
     strikeRate = l['SR'];
     fours = l['Fours'];
     sixes = l['Sixes'];
-    status = l['Status'];
+    status = l['Status'] ?? '';
     stricker = l['Stricker'] ?? false;
     batting = l['Current Batter'] ?? false;
   }

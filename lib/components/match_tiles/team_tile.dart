@@ -65,7 +65,7 @@ class TeamTile extends StatelessWidget {
               end: Alignment.bottomCenter,
             ),
           ),
-          height: fixture.current == "upcoming" ? 100.sp : 160.sp,
+          height: fixture.current == "upcoming" ? 100.sp : 130.sp,
           // decoration: BoxDecoration(
           // gradient: LinearGradient(colors: [
           //   fixture.home.color,
@@ -100,8 +100,6 @@ class TeamTile extends StatelessWidget {
                   ),
                 ),
               ),
-              //   ],
-              // ),
               // Opacity(
               //   opacity: 1,
               //   child: Row(
@@ -113,29 +111,33 @@ class TeamTile extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     Text(
                         fixture.description +
                             " on ${fixture.date.day}-${fixture.date.month}-${fixture.date.year}",
                         textAlign: TextAlign.center,
                         style: AppConstants.textStyles['body']),
-                    Expanded(
-                      child: Row(
-                        children: [
-                          Image.network(
-                            fixture.home.logo,
-                            height: fixture.current == "match-ended" &&
-                                    fixture.winner.code == fixture.home.code
-                                ? 45.sp
-                                : 40.sp,
-                            fit: BoxFit.cover,
-                          ),
-                          Expanded(
-                            child: Opacity(
-                              opacity: fixture.current == "match-ended" &&
-                                      fixture.winner.code == fixture.away.code
-                                  ? 0.5
-                                  : 1,
+                    // Expanded(
+                    //   child:
+                    Row(
+                      children: [
+                        Image.network(
+                          fixture.home.logo,
+                          height: fixture.current == "match-ended" &&
+                                  fixture.winner.code == fixture.home.code
+                              ? 45.sp
+                              : 40.sp,
+                          fit: BoxFit.cover,
+                        ),
+                        Expanded(
+                          child: Opacity(
+                            opacity: fixture.current == "match-ended" &&
+                                    fixture.winner.code == fixture.away.code
+                                ? 0.5
+                                : 1,
+                            child: Padding(
+                              padding: const EdgeInsets.all(4.0),
                               child: Column(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceEvenly,
@@ -145,11 +147,17 @@ class TeamTile extends StatelessWidget {
                                       overflow: TextOverflow.ellipsis,
                                       textAlign: TextAlign.center,
                                       style: AppConstants.textStyles['bold']),
+                                  const SizedBox(
+                                    height: 4,
+                                  ),
                                   if (fixture.current == "live" ||
                                       fixture.current == "match-ended")
                                     Text(fixture.scoreh,
                                         style: AppConstants
                                             .textStyles['full bold']),
+                                  const SizedBox(
+                                    height: 4,
+                                  ),
                                   if (fixture.current == "live" ||
                                       fixture.current == "match-ended")
                                     Text(fixture.overh,
@@ -158,12 +166,15 @@ class TeamTile extends StatelessWidget {
                               ),
                             ),
                           ),
-                          Expanded(
-                            child: Opacity(
-                              opacity: fixture.current == "match-ended" &&
-                                      fixture.winner.code == fixture.home.code
-                                  ? 0.5
-                                  : 1,
+                        ),
+                        Expanded(
+                          child: Opacity(
+                            opacity: fixture.current == "match-ended" &&
+                                    fixture.winner.code == fixture.home.code
+                                ? 0.5
+                                : 1,
+                            child: Padding(
+                              padding: const EdgeInsets.all(4.0),
                               child: Column(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceEvenly,
@@ -173,11 +184,17 @@ class TeamTile extends StatelessWidget {
                                       overflow: TextOverflow.ellipsis,
                                       textAlign: TextAlign.center,
                                       style: AppConstants.textStyles['bold']),
+                                  const SizedBox(
+                                    height: 4,
+                                  ),
                                   if (fixture.current == "live" ||
                                       fixture.current == "match-ended")
                                     Text(fixture.scorea,
                                         style: AppConstants
                                             .textStyles['full bold']),
+                                  const SizedBox(
+                                    height: 4,
+                                  ),
                                   if (fixture.current == "live" ||
                                       fixture.current == "match-ended")
                                     Text(fixture.overa,
@@ -187,17 +204,18 @@ class TeamTile extends StatelessWidget {
                               ),
                             ),
                           ),
-                          Image.network(
-                            fixture.away.logo,
-                            height: fixture.current == "match-ended" &&
-                                    fixture.winner.code == fixture.away.code
-                                ? 45.sp
-                                : 40.sp,
-                            fit: BoxFit.cover,
-                          ),
-                        ],
-                      ),
+                        ),
+                        Image.network(
+                          fixture.away.logo,
+                          height: fixture.current == "match-ended" &&
+                                  fixture.winner.code == fixture.away.code
+                              ? 45.sp
+                              : 40.sp,
+                          fit: BoxFit.cover,
+                        ),
+                      ],
                     ),
+                    // ),
                     Text(fixture.status,
                         textAlign: TextAlign.center,
                         style: AppConstants.textStyles['body']),

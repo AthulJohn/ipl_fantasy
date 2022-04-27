@@ -76,7 +76,23 @@ Future<Map<String, dynamic>> getLiveInningsScore(link, String over) async {
       dynamic l = jsonDecode(response.body);
       return {
         'Status': l['Status'],
-        'innings': InningsScore.fromJson(l['innings'], over)
+        'innings': InningsScore.fromJson(l['innings'][0], over)
+      };
+    }
+  }
+  return {'Status': ' ', 'innings': InningsScore()};
+}
+
+Future<Map<String, dynamic>> getLiveBoardScore(link, String over) async {
+  Uri? uri =
+      Uri.tryParse('https://ipl-fantasy-api.herokuapp.com/liveboard/' + link);
+  if (uri != null) {
+    final response = await http.get(uri);
+    if (response.statusCode == 200) {
+      dynamic l = jsonDecode(response.body);
+      return {
+        'Status': l['Status'],
+        'innings': InningsScore.fromJsonlive(l['score'], over)
       };
     }
   }

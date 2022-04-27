@@ -13,10 +13,11 @@ class BowlerScore {
   BowlerScore.fromJson(Map l) {
     name = l['Name'];
     runs = l['Runs'];
-    wickets = l['Wicket'];
-    over = l['Over'];
+    wickets = l['Wickets'] ?? l['Wicket'];
+    over = l['Overs'] ?? l['Over'];
     maiden = l['Maiden'];
-    economy = l['Economy'];
+    double econ = (double.tryParse(runs) ?? 1) / (num.tryParse(over) ?? 1);
+    economy = econ.toStringAsFixed(2);
     bowling = l['Bowler'] ?? false;
   }
 
