@@ -38,30 +38,20 @@ class Fixture {
         link = '',
         venue = '';
   Fixture withNewScore(dynamic m) {
-    if (home.name == m['Team H'].toString()) {
-      if (overa.compareTo(m['Overs Team A'] ?? '') < 0 ||
-          overh.compareTo(m['Overs Team H'] ?? '') < 0 ||
-          overa.startsWith('9') ||
-          overh.startsWith('9')) {
-        scorea = m['Score Team A'] ?? '';
-        scoreh = m['Score Team H'] ?? '';
-        overa = m['Overs Team A'] ?? '';
-        overh = m['Overs Team H'] ?? '';
-        if (m['Status'] != '') {
-          status = m['Status'];
-        }
+    if (home.code == m['Team H'].toString()) {
+      scorea = m['Score Team A'] ?? '';
+      scoreh = m['Score Team H'] ?? '';
+      overa = m['Overs Team A'] ?? '';
+      overh = m['Overs Team H'] ?? '';
+      if (m['Status'] != '') {
+        status = m['Status'];
       }
     } else {
-      if (overa.compareTo(m['Overs Team H'] ?? '') < 0 ||
-          overh.compareTo(m['Overs Team A'] ?? '') < 0 ||
-          overa.startsWith('9') ||
-          overh.startsWith('9')) {
-        scorea = m['Score Team H'] ?? '';
-        scoreh = m['Score Team A'] ?? '';
-        overa = m['Overs Team H'] ?? '';
-        overh = m['Overs Team A'] ?? '';
-        if (m['Status'] != '') status = m['Status'];
-      }
+      scorea = m['Score Team H'] ?? '';
+      scoreh = m['Score Team A'] ?? '';
+      overa = m['Overs Team H'] ?? '';
+      overh = m['Overs Team A'] ?? '';
+      if (m['Status'] != '') status = m['Status'];
     }
     return this;
   }

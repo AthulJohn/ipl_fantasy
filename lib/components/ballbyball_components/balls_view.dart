@@ -36,8 +36,6 @@ class BallsView extends StatelessWidget {
                 (inningsScore.balls.length > 1)
                     ? inningsScore.balls[0]
                     : Bowl(ball: '', over: '0.0 1', commentary: '', basic: ''),
-                inningsScore.lastStricker,
-                inningsScore.lastBowler,
                 // true),
                 inningsScore.updated),
             flex: 8),

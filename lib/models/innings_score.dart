@@ -18,8 +18,7 @@ class InningsScore {
   //Only for live data
   int target = 0;
   bool updated = false;
-  String lastStricker = '';
-  String lastBowler = '';
+  bool live = false;
   InningsScore();
   InningsScore.fromJson(Map l, String over) {
     if (over.compareTo((l['Overs'] ?? '')) < 0 ||
@@ -31,6 +30,7 @@ class InningsScore {
       overs = (l['Overs'] ?? '');
       runRate = l['Runrate'] ?? '';
       team = l['Team'] ?? '';
+      if (!score.contains('/10') && overs != '20') live = true;
       if (overs == '') return;
 
       batterscores = [
@@ -46,6 +46,7 @@ class InningsScore {
   }
 
   InningsScore.fromJsonlive(Map l, String over) {
+    live = true;
     if (over.compareTo((l['BatScore'] ?? ' (').split(' (')[1].split(')')[0]) <
             0 ||
         over.startsWith('1') &&
@@ -59,8 +60,9 @@ class InningsScore {
           : int.tryParse(l['BowlScore'].split(' ')[2].split('/')[0]) ?? 0;
       score = l['BatScore'].split(' ')[2];
       extras = '';
-      if ((l['BatScore']).contains(' ('))
+      if ((l['BatScore']).contains(' (')) {
         overs = (l['BatScore']).split(' (')[1].split(')')[0];
+      }
       runRate = l['CRR'] ?? '';
       team = l['BatScore'].split(' ')[0] ?? '';
       if (overs == '') return;
@@ -74,12 +76,26 @@ class InningsScore {
         for (Map p in l['Bowling']) BowlerScore.fromJson(p),
       ];
       balls = [];
-      for (int i = 0; i < l['Balls'].length && i < l['Commentry'].length; i++) {
-        balls.add(Bowl(
-            over: l['Commentry'][i].split(' ')[0],
-            ball: l['Balls'][i].toString(),
-            basic: l['Commentry'][i].split(',')[0],
-            commentary: l['Commentry'][i].split(',')[1]));
+      for (String s in l['Commentry']) {
+        if (s.split(' ')[0].contains(':')) l['Commentry'].remove(s);
+      }
+      for (int i = 0; i < l['Balls'].length; i++) {
+        if (i < l['Commentry'].length) {
+          String basc = l['Commentry'][i].split(',')[0];
+          balls.add(Bowl(
+              over: basc.split(' ')[0],
+              ball: l['Balls'][i].toString(),
+              basic: basc,
+              commentary: (l['Commentry'][i])
+                  .toString()
+                  .replaceFirst(basc + ', ', '')));
+        } else {
+          balls.add(Bowl(
+              over: '',
+              ball: l['Balls'][i].toString(),
+              basic: '',
+              commentary: ''));
+        }
       }
     } else {
       updated = false;

@@ -16,8 +16,9 @@ class ScoreBoard {
 
   ScoreBoard.fromJson(Map l) {
     status = l['Status'];
+    print('onee');
     innings = [
-      for (Map m in l['innings']) InningsScore.fromJson(m, ' '),
+      for (Map m in l['innings']) InningsScore.fromJson(m, ''),
     ];
   }
 }

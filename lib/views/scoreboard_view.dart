@@ -56,8 +56,7 @@ class ScoreBoardView extends StatelessWidget {
                       for (int i = 0; i < 2; i++)
                         if (snapshot.data!.innings.length < i + 1)
                           InningsView(InningsScore())
-                        else if (snapshot.data!.innings[i].overs != '' &&
-                            snapshot.data!.innings[i].overs != '20')
+                        else if (snapshot.data!.innings[i].live)
                           LiveInningsView(
                             link: fixture.link,
                           )

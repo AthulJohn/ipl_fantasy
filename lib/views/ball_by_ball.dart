@@ -65,12 +65,24 @@ class BallbyBallView extends StatelessWidget {
     return notouts;
   }
 
-  Map<String, String> targetFinder(String stat) {
+  Map<String, String> targetFinder(String stat, String over) {
     List<String> statsplit = stat.split(' ');
-    return {
-      'R': statsplit[statsplit.length - 5],
-      'B': statsplit[statsplit.length - 2]
-    };
+    if (statsplit.last == 'balls') {
+      return {
+        'R': statsplit[statsplit.length - 5],
+        'B': statsplit[statsplit.length - 2]
+      };
+    } else {
+      int balls = 0;
+      if (!over.contains('.')) {
+        List<String> oversplit = over.split('.');
+        balls = (int.tryParse(oversplit[0]) ?? 0) * 6 +
+            (int.tryParse(oversplit[1]) ?? 0);
+      } else {
+        balls = (int.tryParse(over) ?? 0) * 6;
+      }
+      return {'R': statsplit[statsplit.length - 2], 'B': '$balls'};
+    }
   }
 
   @override
@@ -84,7 +96,7 @@ class BallbyBallView extends StatelessWidget {
                       Expanded(
                           flex: 10,
                           child: BallsView(snapshot.data!['innings'])),
-                      if (snapshot.data!['Status'].endsWith('rpo'))
+                      if (snapshot.data!['Status'].contains('need'))
                         Expanded(
                           child: Container(
                               decoration: BoxDecoration(
@@ -123,7 +135,7 @@ class BallbyBallView extends StatelessWidget {
                                     color: Colors.grey[300],
                                     padding: const EdgeInsets.all(8),
                                     child: Text(
-                                      "${targetFinder(snapshot.data!['Status'])['R']}",
+                                      "${targetFinder(snapshot.data!['Status'], snapshot.data!['innings'].overs)['R']}",
                                       style: TextStyle(fontSize: 24.sp),
                                     ),
                                   ),
@@ -138,7 +150,7 @@ class BallbyBallView extends StatelessWidget {
                                     color: Colors.grey[300],
                                     padding: const EdgeInsets.all(8),
                                     child: Text(
-                                      "${targetFinder(snapshot.data!['Status'])['B']}",
+                                      "${targetFinder(snapshot.data!['Status'], snapshot.data!['innings'].overs)['B']}",
                                       style: TextStyle(fontSize: 24.sp),
                                     ),
                                   ),

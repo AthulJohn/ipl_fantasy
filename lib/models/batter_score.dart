@@ -20,7 +20,7 @@ class BatterScore {
 
     // if (l['Score'] != '') {
     runs = l['Runs'] ?? '';
-    balls = l['Balls'] ?? '';
+    balls = l['Balls'][0] ?? '';
     // }
     strikeRate = l['SR'];
     fours = l['Fours'];

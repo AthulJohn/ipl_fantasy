@@ -4,12 +4,9 @@ import 'package:ipl_fantasy/models/bowl_detail.dart';
 import 'package:ipl_fantasy/models/constants.dart';
 
 class CurrentBallView extends StatefulWidget {
-  final String stricker, bowler;
   final Bowl ball;
   final bool animate;
-  const CurrentBallView(this.ball, this.stricker, this.bowler, this.animate,
-      {Key? key})
-      : super(key: key);
+  const CurrentBallView(this.ball, this.animate, {Key? key}) : super(key: key);
 
   @override
   State<CurrentBallView> createState() => _CurrentBallViewState();
@@ -47,9 +44,13 @@ class _CurrentBallViewState extends State<CurrentBallView> {
                     widget.ball.basic,
                     style: AppConstants.textStyles['focus'],
                   ),
-                  Text(
-                    widget.ball.commentary,
-                    style: AppConstants.textStyles['full bold'],
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
+                      widget.ball.commentary,
+                      style: AppConstants.textStyles['body'],
+                      textAlign: TextAlign.center,
+                    ),
                   ),
                 ],
               ),
@@ -201,3 +202,26 @@ class CurrentBall extends StatelessWidget {
     }
   }
 }
+
+
+/*
+Prepare with python
+
+Make short note: might be 3 4 months gap
+
+Fast negative feedback
+
+Bring Laptop, 
+if not available, share
+Find another way for exams
+
+Make batchwise whatsapp group
+Venues will change, so key on miss table, take it, open class, set projector, make students assemble by 8:45 (before 9)
+All things needed by trainer (chalks, waterbottle, pens, etc)
+Close door,switch off everything, and give key to miss
+attendance mandatory, strict at start
+
+utilise trainer
+
+
+ */
