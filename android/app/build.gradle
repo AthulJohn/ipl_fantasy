@@ -52,7 +52,7 @@ android {
         applicationId "com.athulpulickal.ipl_fantasy"
         minSdkVersion 26
         targetSdkVersion 30
-        versionCode 5
+        versionCode 6
         versionName flutterVersionName
     }
 

@@ -9,7 +9,7 @@ class BatterTile extends StatelessWidget {
   const BatterTile(this.batter, {Key? key}) : super(key: key);
 
   bool isbatting() {
-    return (['not out', 'Batting'].contains(batter.status));
+    return (['not out', 'batting'].contains(batter.status));
   }
 
   @override

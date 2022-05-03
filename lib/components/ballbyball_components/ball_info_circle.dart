@@ -18,7 +18,7 @@ class BallInfoCircle extends StatelessWidget {
                   ? Colors.green
                   : bowl.ball.contains('4')
                       ? Colors.indigo
-                      : bowl.ball.contains('W')
+                      : bowl.ball.contains('W') && !bowl.ball.contains('d')
                           ? Colors.red
                           : Colors.white),
           width: 50,
@@ -29,7 +29,7 @@ class BallInfoCircle extends StatelessWidget {
               style: TextStyle(
                   color: bowl.ball.contains('6') ||
                           bowl.ball.contains('4') ||
-                          bowl.ball.contains('W')
+                          (bowl.ball.contains('W') && !bowl.ball.contains('d'))
                       ? Colors.white
                       : Colors.black),
             ),
@@ -38,10 +38,10 @@ class BallInfoCircle extends StatelessWidget {
         if (bowl.over.contains('.1'))
           Center(
             child: Text('Over ' + bowl.over.split('.')[0],
-                style: TextStyle(color: Colors.white)),
+                style: const TextStyle(color: Colors.white)),
           ),
         if (bowl.over.contains('.1'))
-          VerticalDivider(
+          const VerticalDivider(
             color: Colors.white,
           )
       ],

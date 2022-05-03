@@ -22,7 +22,7 @@ class InningsScore {
   InningsScore();
   InningsScore.fromJson(Map l, String over) {
     if (over.compareTo((l['Overs'] ?? '')) < 0 ||
-        over.startsWith('1') && (l['Overs'] ?? '').startsWith('1')) {
+        over.startsWith('9') && (l['Overs'] ?? '').startsWith('1')) {
       updated = true;
       target = 0;
       score = (l['Score'] ?? '');
@@ -47,13 +47,13 @@ class InningsScore {
 
   InningsScore.fromJsonlive(Map l, String over) {
     live = true;
-    if (over.compareTo((l['BatScore'] ?? ' (').split(' (')[1].split(')')[0]) <
+    if (over.compareTo((l['BatScore'] ?? ' (').split(' (')[1].split(')')[0]) <=
             0 ||
-        over.startsWith('1') &&
+        over.startsWith('9') &&
             (l['BatScore'] ?? ' (')
                 .split(' (')[1]
                 .split(')')[0]
-                .startsWith('9')) {
+                .startsWith('1')) {
       updated = true;
       target = l['BowlScore'] == ''
           ? 0

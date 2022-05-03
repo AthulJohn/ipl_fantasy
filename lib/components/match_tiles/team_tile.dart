@@ -42,7 +42,7 @@ class TeamTile extends StatelessWidget {
             borderRadius: BorderRadius.circular(10),
             gradient: LinearGradient(
               colors: fixture.current == 'live'
-                  ? [
+                  ? const [
                       Color(0xff09B27C),
                       Color(0xff278AB0),
                       // fixture.winner.color,
@@ -51,7 +51,7 @@ class TeamTile extends StatelessWidget {
                       // fixture.winner.color,
                     ]
                   : fixture.current == 'match-ended'
-                      ? [
+                      ? const [
                           Color(0xFF1C4670),
                           Color(0xFF278AB0),
                         ]
@@ -59,7 +59,7 @@ class TeamTile extends StatelessWidget {
                           // fixture.home.color,
                           // fixture.away.color,
                           Colors.blueGrey,
-                          Color(0xFF278AB0),
+                          const Color(0xFF278AB0),
                         ],
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,

@@ -15,11 +15,10 @@ class CurrentBallView extends StatefulWidget {
 class _CurrentBallViewState extends State<CurrentBallView> {
   @override
   Widget build(BuildContext context) {
-    print("fiest here");
     return Container(
       decoration: BoxDecoration(
           image: DecorationImage(
-              image: AssetImage('images/ground.png'),
+              image: const AssetImage('images/ground.png'),
               fit: BoxFit.cover,
               colorFilter: ColorFilter.mode(
                   Colors.black.withOpacity(0.5), BlendMode.srcATop))),
@@ -35,13 +34,14 @@ class _CurrentBallViewState extends State<CurrentBallView> {
               ),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Center(
-              child: Column(
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: ListView(
                 children: [
                   Text(
                     widget.ball.basic,
+                    textAlign: TextAlign.center,
                     style: AppConstants.textStyles['focus'],
                   ),
                   Padding(
@@ -55,7 +55,7 @@ class _CurrentBallViewState extends State<CurrentBallView> {
                 ],
               ),
             ),
-          )
+          ),
         ],
       ),
     );
@@ -123,82 +123,81 @@ class CurrentBall extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    switch (ball) {
-      case 'W':
-        return Column(
-          children: [
-            Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  color: Colors.red.withOpacity(0.8),
-                ),
-                child: Text('WICKET ',
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 80.sp,
-                        fontWeight: FontWeight.bold,
-                        fontStyle: FontStyle.italic))),
-            Text(
-              '\nAnd the batsman has to depart!',
-              style: AppConstants.textStyles['full bold']!
-                  .copyWith(color: Colors.red),
-            )
-          ],
-        );
-      case '4':
-        return Column(
-          children: [
-            Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  color: Colors.blue.withOpacity(0.8),
-                ),
-                child: Text('FOUR! ',
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 80.sp,
-                        fontWeight: FontWeight.bold,
-                        fontStyle: FontStyle.italic))),
-            Text(
-              '\nWhat a lovely shot!',
-              style: AppConstants.textStyles['full bold']!
-                  .copyWith(color: Colors.blue),
-            )
-          ],
-        );
-      case '6':
-        return Column(
-          children: [
-            Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  color: Colors.green.withOpacity(0.8),
-                ),
-                child: Text('SIX! ',
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 80.sp,
-                        fontWeight: FontWeight.bold,
-                        fontStyle: FontStyle.italic))),
-            Text(
-              '\nBOOM! BANG! SIX!',
-              style: AppConstants.textStyles['full bold']!
-                  .copyWith(color: Colors.green),
-            )
-          ],
-        );
-      default:
-        return Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
-              color: Colors.white.withOpacity(0.8),
-            ),
-            child: Text(' $ball ',
-                style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 80.sp,
-                    fontWeight: FontWeight.bold,
-                    fontStyle: FontStyle.italic)));
+    if (ball.contains('W') && !ball.contains('d')) {
+      return Column(
+        children: [
+          Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                color: Colors.red.withOpacity(0.8),
+              ),
+              child: Text('WICKET ',
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 80.sp,
+                      fontWeight: FontWeight.bold,
+                      fontStyle: FontStyle.italic))),
+          Text(
+            '\nAnd the batsman has to depart!',
+            style: AppConstants.textStyles['full bold']!
+                .copyWith(color: Colors.red),
+          )
+        ],
+      );
+    } else if (ball.contains('4')) {
+      return Column(
+        children: [
+          Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                color: Colors.blue.withOpacity(0.8),
+              ),
+              child: Text('FOUR! ',
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 80.sp,
+                      fontWeight: FontWeight.bold,
+                      fontStyle: FontStyle.italic))),
+          Text(
+            '\nWhat a lovely shot!',
+            style: AppConstants.textStyles['full bold']!
+                .copyWith(color: Colors.blue),
+          )
+        ],
+      );
+    } else if (ball.contains('6')) {
+      return Column(
+        children: [
+          Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                color: Colors.green.withOpacity(0.8),
+              ),
+              child: Text('SIX! ',
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 80.sp,
+                      fontWeight: FontWeight.bold,
+                      fontStyle: FontStyle.italic))),
+          Text(
+            '\nBOOM! BANG! SIX!',
+            style: AppConstants.textStyles['full bold']!
+                .copyWith(color: Colors.green),
+          )
+        ],
+      );
+    } else {
+      return Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10),
+            color: Colors.white.withOpacity(0.8),
+          ),
+          child: Text(' $ball ',
+              style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 80.sp,
+                  fontWeight: FontWeight.bold,
+                  fontStyle: FontStyle.italic)));
     }
   }
 }

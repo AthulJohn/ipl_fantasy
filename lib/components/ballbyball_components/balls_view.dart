@@ -80,7 +80,7 @@ class _RecentBallState extends State<RecentBall>
 
   void initAnimation() {
     controller = AnimationController(
-      duration: Duration(seconds: 1),
+      duration: const Duration(seconds: 1),
       vsync: this,
     );
 
